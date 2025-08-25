@@ -203,9 +203,12 @@ Set-ItemProperty 'HKLM:\System\CurrentControlSet\Control\Terminal Server' fDenyT
 Enable-NetFirewallRule -DisplayGroup "Remote Desktop"
 
 
+
 **Step-by-Step: Windows Server Free Tier Lab on AWS**
 
+
 🔹 Step 1: Log in & Choose Free Tier
+
 	1.	Go to AWS Console → EC2 → Launch Instance.
 	2.	Give a name: WinServerLab-DC01.
 	3.	Choose AMI:
@@ -215,6 +218,7 @@ Enable-NetFirewallRule -DisplayGroup "Remote Desktop"
 ⸻
 
 🔹 Step 2: Choose Instance Type
+
 	•	Select t2.micro (Free Tier Eligible).
 	•	✅ Free tier
 	•	❌ Limited resources (1 vCPU, 1 GB RAM) → okay for Server Core
@@ -224,8 +228,10 @@ Enable-NetFirewallRule -DisplayGroup "Remote Desktop"
 ⸻
 
 🔹 Step 3: Key Pair & Security Group
+
 	1.	Create a new Key Pair → .pem file → download it.
 (You’ll use it for RDP/Password decryption).
+
 	2.	Security Group (Firewall rules):
 	•	Allow RDP (3389) from your IP only.
 	•	Allow ICMP (ping) for testing (optional).
@@ -233,18 +239,21 @@ Enable-NetFirewallRule -DisplayGroup "Remote Desktop"
 ⸻
 
 🔹 Step 4: Storage
+
 	•	Default: 30 GB gp3 is enough.
 	•	Keep free tier → don’t add more unless needed.
 
 ⸻
 
 🔹 Step 5: Launch
+
 	•	Click Launch Instance.
 	•	Wait until Instance State → Running.
 
 ⸻
 
 🔹 Step 6: Get RDP Access
+
 	1.	Select the instance → Connect → RDP Client.
 	2.	Download Remote Desktop File (.rdp).
 	3.	Decrypt Administrator password using .pem key.
@@ -255,6 +264,7 @@ Enable-NetFirewallRule -DisplayGroup "Remote Desktop"
 ⸻
 
 🔹 Step 7: Verify Inside Server
+
 	1.	Check Server Core command prompt (default for t2.micro).
 	•	Run sconfig → server config menu.
 	•	Configure hostname, domain join, Windows Update, etc.
@@ -266,6 +276,7 @@ Enable-NetFirewallRule -DisplayGroup "Remote Desktop"
 🔹 Step 8: Practice Tasks
 
 Now you can practice Module 1 basics:
+
 ✅ Rename server, change IP (static), enable RDP.
 ✅ Explore sconfig options.
 ✅ Join domain (later, when you create AD).
