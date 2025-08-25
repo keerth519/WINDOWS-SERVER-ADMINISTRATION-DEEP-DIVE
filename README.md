@@ -6,27 +6,36 @@
 	•	Installation types (Core vs Desktop Experience).
 	•	Real-time: Build a test lab in VMware/Azure/AWS.
 **Module 1 — Windows Server Basics**
-**
+
+
 1)** **Editions & Licensing (2019 vs 2022, Standard vs Datacenter**)**
-**
+
+
 **Editions**
+
 	•	**Standard**
+ 
 	•	Best for small/medium workloads.
 	•	Virtualization rights: includes licenses for 2 Windows Server VMs per license. (Stack more licenses to run more VMs.)
 	•	Missing advanced features like Software-Defined Networking (SDN), Storage Spaces Direct (S2D), and Shielded VMs.
+ 
 	•	**Datacenter**
+ 
 	•	Best for large/virtualized environments.
 	•	Virtualization rights: unlimited Windows Server VMs on the licensed host.
 	•	Includes S2D, Storage Replica (unlimited), Shielded VMs, SDN, Host Guardian Service, etc.
 	•	Essentials (limited, small orgs): up to 25 users / 50 devices, no virtualization rights.
 
 **Licensing (quick, practical)**
+
 	•	Core-based: license all physical cores (min 16 cores per server and 8 per CPU).
 	•	CALs: you also need User or Device CALs for anyone/anything accessing the server.
 	•	RDS CALs: required for Remote Desktop Session Host scenarios (published apps/desktops).
 
 **2019 vs 2022 (what actually matters)**
+
 	•	**Security:**
+ 
 	•	2022 → Secured-core server (TPM 2.0, VBS/HVCI, firmware protection), TLS 1.3 by default, SMB compression; SMB over QUIC is available with the Azure Edition of 2022.
 	•	Hybrid/Cloud: better Azure Arc integration, Automanage/Hotpatch (Azure Edition).
 	•	Containers: smaller images, better Kubernetes compatibility in 2022.
@@ -35,6 +44,7 @@
 ⸻
 
 **2) Server Manager & Windows Admin Center (WAC)**
+
 	•	Server Manager (built-in GUI)
 	•	Add/remove Roles & Features, manage local/remote servers, basic performance, events.
 	•	Use on Desktop Experience servers, or via RSAT tools on an admin workstation.
@@ -105,6 +115,7 @@ We’ll create one Windows Server. (Later, add a second server to join a domain,
 	8.	Launch the instance.
 
 **C. Get the Windows password & RDP**
+
 	1.	Wait until Status checks = 2/2.
 	2.	Select the instance → Actions → Security → Get Windows password.
 	3.	Upload your .pem key → decrypt → copy the Administrator password.
@@ -114,6 +125,7 @@ We’ll create one Windows Server. (Later, add a second server to join a domain,
 	•	Password: paste decrypted password → Connect.
 
 **D. First-time server setup (post-boot)**
+
 	1.	Rename server (optional):
 	•	GUI: Server Manager → Local Server → Computer name → Change.
 	•	PowerShell: Rename-Computer -NewName "WS22-LAB" -Restart
@@ -134,6 +146,7 @@ Enable-NetFirewallRule -DisplayGroup "Remote Desktop"
 https://<server-name>:6516 → add your server(s) to WAC.
 
 **E. (Optional) Make it a Domain Controller (for later modules)**
+
 	1.	Add the AD DS role:
 Install-WindowsFeature AD-Domain-Services -IncludeManagementTools
 2.Promote to new forest (example: corp.local):
@@ -144,11 +157,13 @@ Install-ADDSForest -DomainName "corp.local"
 	•	Keep both servers in the same Security Group and allow all traffic within the SG for easy AD replication in a lab.
 
 **F. Spin up a second Windows instance (member server)**
+
 	•	Repeat B–D and join it to the domain:
 Add-Computer -DomainName corp.local -Restart
 •	Now you have DC1 and MEMBER1 for AD/GPO/DNS/DHCP/DFS labs.
 
 **G. Cost & security hygiene**
+
 	•	Stop instances when not in use; EBS storage still costs.
 	•	Restrict RDP to your IP only; ideally use Session Manager.
 	•	Never expose AD ports publicly; keep domain traffic within VPC.
