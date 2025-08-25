@@ -266,8 +266,10 @@ Enable-NetFirewallRule -DisplayGroup "Remote Desktop"
 🔹 Step 7: Verify Inside Server
 
 	1.	Check Server Core command prompt (default for t2.micro).
+ 
 	•	Run sconfig → server config menu.
 	•	Configure hostname, domain join, Windows Update, etc.
+ 
 	2.	Install Windows Admin Center (WAC) locally on your laptop → manage the server remotely via browser.
 (Much easier than working in Core).
 
@@ -278,9 +280,13 @@ Enable-NetFirewallRule -DisplayGroup "Remote Desktop"
 Now you can practice Module 1 basics:
 
 ✅ Rename server, change IP (static), enable RDP.
+
 ✅ Explore sconfig options.
+
 ✅ Join domain (later, when you create AD).
+
 ✅ Try basic PowerShell commands:
 Get-WindowsFeature
 Install-WindowsFeature AD-Domain-Services -IncludeManagementTools
+
 ✅ Connect with Windows Admin Center (WAC).
