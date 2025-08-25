@@ -18,8 +18,11 @@
 	•	**Standard**
  
 	•	Best for small/medium workloads.
-	•	Virtualization rights: includes licenses for 2 Windows Server VMs per license. (Stack more licenses to run more VMs.)
-	•	Missing advanced features like Software-Defined Networking (SDN), Storage Spaces Direct (S2D), and Shielded VMs.
+	•	Virtualization rights: includes licenses for 2 Windows Server VMs per license.
+         (Stack more licenses to run more VMs.)
+ 
+	•	Missing advanced features like Software-Defined Networking (SDN), 
+            Storage Spaces Direct (S2D), and Shielded VMs.
  
 	•	**Datacenter**
  
