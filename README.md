@@ -41,7 +41,9 @@
 
 	•	**Security:**
  
-	•	2022 → Secured-core server (TPM 2.0, VBS/HVCI, firmware protection), TLS 1.3 by default, SMB compression; SMB over QUIC is available with the Azure Edition of 2022.
+	•	2022 → Secured-core server (TPM 2.0, VBS/HVCI, firmware protection),
+          TLS 1.3 by default, SMB compression; 
+        SMB over QUIC is available with the Azure Edition of 2022.
 	•	Hybrid/Cloud: better Azure Arc integration, Automanage/Hotpatch (Azure Edition).
 	•	Containers: smaller images, better Kubernetes compatibility in 2022.
 	•	Networking/perf: improved UDP stack, faster SMB (compression).
