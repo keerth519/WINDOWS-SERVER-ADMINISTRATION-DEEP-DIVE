@@ -1,10 +1,12 @@
 
 
 **Module 1 – Windows Server Basics**
+
 	•	Editions & Licensing (2019 vs 2022, Standard vs Datacenter).
 	•	Server Manager & Windows Admin Center.
 	•	Installation types (Core vs Desktop Experience).
 	•	Real-time: Build a test lab in VMware/Azure/AWS.
+ 
 **Module 1 — Windows Server Basics**
 
 
@@ -56,6 +58,7 @@
 ⸻
 
 **3) Installation Types (Core vs Desktop Experience)**
+
 	•	Server Core (default)
 	•	No full desktop GUI; smaller footprint; fewer patches; more secure.
 	•	Manage with PowerShell, SConfig, WAC, or remote MMCs/RSAT.
@@ -137,21 +140,28 @@ We’ll create one Windows Server. (Later, add a second server to join a domain,
 	•	GUI: Server Manager → Manage → Add Roles and Features.
 	•	PowerShell (DNS + DHCP as example):Install-WindowsFeature DNS -IncludeManagementTools
                                            Install-WindowsFeature DHCP -IncludeManagementTools
+										   
 5.Enable RDP NLA (usually default). To toggle via PowerShell (if needed):
+
 Set-ItemProperty -Path 'HKLM:\System\CurrentControlSet\Control\Terminal Server' -Name "fDenyTSConnections" -Value 0
 Enable-NetFirewallRule -DisplayGroup "Remote Desktop"
 
 6.Install Windows Admin Center (optional but recommended)
+
 	•	Download WAC MSI on this server (or on your admin PC), install, then browse to
 https://<server-name>:6516 → add your server(s) to WAC.
 
 **E. (Optional) Make it a Domain Controller (for later modules)**
 
 	1.	Add the AD DS role:
+ 
 Install-WindowsFeature AD-Domain-Services -IncludeManagementTools
+
 2.Promote to new forest (example: corp.local):
 Install-ADDSForest -DomainName "corp.local"
+
 	3.	Reboot when prompted.
+ 
 	4.	Tip (AWS networking for AD):
 	•	Give your DC a fixed private IP by assigning a specific secondary private IP to its ENI in EC2 (Windows NIC should still use DHCP).
 	•	Keep both servers in the same Security Group and allow all traffic within the SG for easy AD replication in a lab.
@@ -160,6 +170,7 @@ Install-ADDSForest -DomainName "corp.local"
 
 	•	Repeat B–D and join it to the domain:
 Add-Computer -DomainName corp.local -Restart
+
 •	Now you have DC1 and MEMBER1 for AD/GPO/DNS/DHCP/DFS labs.
 
 **G. Cost & security hygiene**
